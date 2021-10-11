@@ -8,7 +8,6 @@ class Dog
         @breed = breed
     end
 
-
     def self.create_table
         sql = <<-SQL
             CREATE TABLE IF NOT EXISTS dogs(
@@ -101,7 +100,6 @@ class Dog
         end.first
     end
 
-
     def update
         sql = <<-SQL
             UPDATE dogs
@@ -109,7 +107,7 @@ class Dog
             WHERE id = ?
         SQL
 
-        DB[:conn].execute(sql, name, breed, id).map do |row|
+        DB[:conn].execute(sql, self.name, self.breed, self.id).map do |row|
             self.new_from_db(row)
         end.first
     end
